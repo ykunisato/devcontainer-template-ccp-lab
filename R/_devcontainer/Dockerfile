@@ -6,12 +6,12 @@ RUN apt-get update -y && \
     apt-get upgrade -y && \
     apt-get install -y git fonts-ipaexfont fonts-noto-cjk && \
     apt-get install -y wget unzip git pandoc && \
-    apt-get clean
-
-# R用ライブラリ
-RUN apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev && \
+    apt-get install -y libjpeg-dev libv8-dev && \
+    apt-get -y install ffmpeg libmagick++-dev && \
+    apt-get install -y clang make&& \
+    apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev && \
     apt-get install -y libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev &&\
-    apt-get install -y libtiff5-dev libjpeg-dev cmake librsvg2-dev && \
+    apt-get install -y libtiff5-dev cmake librsvg2-dev && \
     apt-get clean
 
 # Pythonの環境を構築
@@ -34,10 +34,5 @@ RUN ln -s ~/opt/quarto-1.7.31/bin/quarto ~/.local/bin/quarto
 ENV PATH="/root/.local/bin:${PATH}"
 
 # Rのパッケージのインストール
-RUN R -e "install.packages('languageserver')"
-RUN R -e "install.packages('vscDebugger', repos = 'https://manuelhentschel.r-universe.dev')"
-RUN R -e "install.packages('reticulate')"
-RUN R -e "install.packages('remotes')"
-RUN R -e "remotes::install_github('rstudio/rstudioapi')"
-RUN R -e "install.packages(c('tidyverse', 'patchwork','httpgd','gridExtra'))"
-RUN R -e "install.packages(c('DiagrammeR', 'DiagrammeRsvg','rsvg','reshape2'))"
+COPY install_r.r install_r.r
+RUN ["r", "install_r.r"]

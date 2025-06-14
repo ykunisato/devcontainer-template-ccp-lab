@@ -1,0 +1,12 @@
+using Pkg
+Pkg.add("ActiveInference")
+Pkg.add("ActionModels")
+Pkg.add("CSV")
+Pkg.add("DataFrames")
+Pkg.add("Distributions")
+Pkg.add("Flux")
+Pkg.add("Plots")
+Pkg.add("POMDPs")
+Pkg.add("POMDPModelTools")
+Pkg.add("RxInfer")
+Pkg.add("StatsPlots")
