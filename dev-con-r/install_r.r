@@ -50,7 +50,6 @@ install.packages(c("bayestestR",
 "gtsummary",
 "hBayesDM",
 "Hmisc",
-"httpgd",
 "igraph",
 "imager",
 "insight",
@@ -149,6 +148,9 @@ install.packages(c("bayestestR",
 # install CMDSTAN_HOME
 remotes::install_github("stan-dev/posterior")
 install.packages("cmdstanr", repos = c("https://mc-stan.org/r-packages/", getOption("repos")))
+
+# install httpgd
+install.packages('httpgd', repos = c('https://community.r-multiverse.org', 'https://cloud.r-project.org'))
 
 # install from GitHub
 remotes::install_github(c("MathiasHarrer/dmetar",
