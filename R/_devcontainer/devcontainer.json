@@ -3,9 +3,19 @@
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
-	"postCreateCommand": "Rscript -e 'cmdstanr::install_cmdstan(cores = 2)' && Rscript -e 'tinytex::install_tinytex()' && Rscript -e 'tinytex::tlmgr_install(\"haranoaji\")'",
+	"postCreateCommand": "Rscript -e 'tinytex::install_tinytex(); tinytex::tlmgr_install(\"haranoaji\"); cmdstanr::install_cmdstan(cores = 2)'",
 	"customizations": {
 		"vscode": {
+			"settings": {
+        		// TerminalのデフォルトをRコンソールに変更
+        		"terminal.integrated.profiles.linux": {
+          		"RInteractive": {
+            		"path": "R",
+            		"icon": "terminal-r"
+          		}
+        		},
+        		"terminal.integrated.defaultProfile.linux": "RInteractive"
+      		},
 			"extensions": [
 				"quarto.quarto",
 				"TianyiShi.rmarkdown",
@@ -14,7 +24,8 @@
 				"GrapeCity.gc-excelviewer",
 				"REditorSupport.r",
 				"REditorSupport.r-syntax",
-				"Tailscale.vscode-tailscale"
+				"Tailscale.vscode-tailscale",
+				"janisdd.vscode-edit-csv"
 			]
 		}
 	}
